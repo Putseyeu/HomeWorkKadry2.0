@@ -41,9 +41,16 @@ namespace HomeWorkKatry2._0
         {
             Console.WriteLine("Добавитье ФИО в досье.");
             string fullNames = Console.ReadLine();
-            Console.WriteLine("Добавитье профессию в досье.");
-            string profession = Console.ReadLine();
-            dossier.Add(fullNames, profession);
+            if (dossier.ContainsKey(fullNames))
+            {
+                Console.WriteLine("Дынные ИФО уже внесены в досье");
+            }
+            else
+            {
+                Console.WriteLine("Добавитье профессию в досье.");
+                string profession = Console.ReadLine();
+                dossier.Add(fullNames, profession);
+            }            
         }
 
         static void ShowDossier(Dictionary<string, string> dossier)
@@ -52,10 +59,12 @@ namespace HomeWorkKatry2._0
             {
                 Console.WriteLine("Досье не заполнено");
             }
-            
-            foreach (var item in dossier)
+            else
             {
-                Console.WriteLine($"ФИО - {item.Key}- профессия {item.Value}");
+                foreach (var item in dossier)
+                {
+                    Console.WriteLine($"ФИО - {item.Key}- профессия {item.Value}");
+                }
             }
         }
 
@@ -68,7 +77,10 @@ namespace HomeWorkKatry2._0
                 dossier.Remove(fullNames);
                 Console.WriteLine($"{fullNames} удален из досье.");
             }
-            else  Console.WriteLine($"ФИО {fullNames} не найдено");
+            else
+            {
+                Console.WriteLine($"ФИО {fullNames} не найдено");
+            }
         }
     }
 }
